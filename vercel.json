@@ -1,0 +1,16 @@
+{
+    "name": "cron-app",
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@now/next"
+      }
+    ],
+    "cron": {
+      "file": {
+        "schedule": "*/10 * * * * *",
+        "type": "http",
+        "url": "/api/_cron_file"
+      }
+    }
+}
