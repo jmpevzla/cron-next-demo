@@ -1,10 +1,13 @@
-const fs = require('fs/promises');
+const fs = require('fs');
 
 export async function updateFile() {
-    try {
-        const date = new Date();
-        await fs.appendFile('/tmp/FILE.txt', date.toISOString() + '\n');
-    } catch(err) {
-        console.error(err);
-    }
+    const date = new Date();
+    return new Promise((res, rej) => {
+        fs.appendFile('/tmp/FILE.txt', date.toISOString() + '\n', function(err) {
+            if (err) {
+                return rej(err);
+            }
+            res();
+        });
+    });
 }
