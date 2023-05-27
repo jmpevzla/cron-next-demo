@@ -1,6 +1,10 @@
-import fs from 'fs';
+const fs = require('fs/promises');
 
-export function updateFile() {
-    const date = new Date();
-    fs.appendFile('FILE.txt', date.toISOString() + '\n');
+export async function updateFile() {
+    try {
+        const date = new Date();
+        await fs.appendFile('/tmp/FILE.txt', date.toISOString() + '\n');
+    } catch(err) {
+        console.error(err);
+    }
 }
